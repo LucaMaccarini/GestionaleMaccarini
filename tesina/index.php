@@ -6,6 +6,7 @@
 
 
  ?>
+ <!--versione 1.0-->
 <html style="height:100%;">
 	<head>
 		<title>archivio v1.0</title>
