@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	function connessione_db()
 	{
 
@@ -63,7 +64,7 @@
 
 	function generateRandomString()
 	{
-		$length = 20;
+		$length = 30;
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
     $randomString = '';
@@ -73,9 +74,9 @@
     return $randomString;
 	}
 
-	function crea_token($username)
+	function crea_token()
 	{
-		session_start();
+		$ip=$_SERVER["REMOTE_ADDR"]; 
 		do{
 			$rifai=false;
 			$token=generateRandomString();
@@ -88,11 +89,29 @@
 				$rifai=true;
 		}while($rifai);
 
-		$inserisci_token="INSERT INTO `connessi` (`id`, `username`, `token`) VALUES (NULL, '".$username."', '".$token."');";
+		$cerca_usename="SELECT id FROM `connessi` WHERE `ip` = '".$ip."';";
 		$conn=connessione_db();
-		$inserimento=mysqli_query($conn,$inserisci_token);
+		$ricerca=mysqli_query($conn,$cerca_usename);
 		chiudi_connessione_db($conn);
-		$_SESSION['token']=$token;
+		
+		$id_ricerca=$ricerca->fetch_array();
+		//echo $id_ricerca['id'];
+		if($id_ricerca != null)
+		{
+			$inserisci_token="UPDATE `connessi` SET `token` = '".$token."' WHERE `connessi`.`id` = ".$id_ricerca['id'].";";
+			$conn=connessione_db();
+			$inserimento=mysqli_query($conn,$inserisci_token);
+			chiudi_connessione_db($conn);
+			$_SESSION['token']=$token;
+		}
+		else
+		{
+			$inserisci_token="INSERT INTO `connessi` (`id`, `ip`, `token`) VALUES (NULL, '".$ip."', '".$token."');";
+			$conn=connessione_db();
+			$inserimento=mysqli_query($conn,$inserisci_token);
+			chiudi_connessione_db($conn);
+			$_SESSION['token']=$token;
+		}
 
 		if($inserimento)
 			return true;
@@ -103,9 +122,8 @@
 
 	function controlla_login_token($percorso)
 	{
-		session_start();
-
-		$cerca_username_token="SELECT username, token FROM `connessi` WHERE `username` LIKE '".$_SESSION['username']."' AND `token` LIKE '".$_SESSION['token']."';";
+		$ip=$_SERVER["REMOTE_ADDR"]; 
+		$cerca_username_token="SELECT ip, token FROM `connessi` WHERE `ip` LIKE '".$ip."' AND `token` LIKE '".$_SESSION['token']."';";
 		$conn = connessione_db();
 		$connesso=mysqli_query($conn,$cerca_username_token);
 		chiudi_connessione_db($conn);
@@ -115,6 +133,50 @@
 			//die("Token errato, rieffettuare il login");
 			echo"<script> window.location.href='".$percorso."' </script>";
 		}
+	}
+	
+	function get_numero_archiviati()
+	{
+		
+
+		$conta_archiviati="SELECT count(id) as archiviati FROM tabella_fascicoli where e_in_archivio=1";
+		$conn = connessione_db();
+		$connesso=mysqli_query($conn,$conta_archiviati);
+		chiudi_connessione_db($conn);
+		
+		$numero_archiviati=$connesso->fetch_array();
+		if( $numero_archiviati!= null)
+		{
+			echo $numero_archiviati['archiviati'];
+		}
+	}
+	
+	function get_numero_disarchiviati()
+	{
+		
+
+		$conta_archiviati="SELECT count(id) as archiviati FROM tabella_fascicoli where e_in_archivio=0";
+		$conn = connessione_db();
+		$connesso=mysqli_query($conn,$conta_archiviati);
+		chiudi_connessione_db($conn);
+		
+		$numero_archiviati=$connesso->fetch_array();
+		if( $numero_archiviati!= null)
+		{
+			echo $numero_archiviati['archiviati'];
+		}
+	}
+	
+	
+	function get_nome_foto_profilo($username)
+	{
+		
+
+		$conta_archiviati="SELECT nome_foto FROM foto_profili where username='".$username."';";
+		$conn = connessione_db();
+		$nome_foto=mysqli_query($conn,$conta_archiviati) -> fetch_array();
+		chiudi_connessione_db($conn);
+		return $nome_foto["nome_foto"];
 	}
 
 

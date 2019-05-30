@@ -1,0 +1,2 @@
+1) rinominare il file 'registrazione.html' in 'registrazione_sbloccata.html'
+2) rinominare il file 'registrazione_bloccata.html' in 'registrazione.html'

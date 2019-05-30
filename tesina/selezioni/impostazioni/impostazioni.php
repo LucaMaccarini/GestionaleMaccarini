@@ -27,11 +27,20 @@
 			<div class="col-xl-8 offset-xl-2 col-md-10 offset-md-1  col-sm-12">
 				<div class="collapse" id="navbarToggleExternalContent" style="text-align:center;">
 					<div class="p-4 spazio_utente">
-						<div class="row">
-							<img src="../../immagini/default_user.png" class="foto_utente" >
-						</div>
+						
+							<?php
+								$la_foto=get_nome_foto_profilo($_SESSION['username']);
+							?>
+							
+							<script>
+								document.write('<img class="cropped_foto dimensione_foto_profilo" src="../../immagini/foto_profilo/<?=$la_foto?>?'+Math.random()+'" >');
+							</script>
+							
 						<div class="row">
 							<h4 style="color:black; width:100%; text-align:center;"><?php echo $_SESSION['username'] ?></h4>
+						</div>
+						<div class="col-4 offset-4">
+							<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href = '../../php/php_per_login/logout.php';">Log out</button>
 						</div>
 						<!--<span class="text-muted">eventuale descrizione</span>-->
 					</div>
@@ -44,6 +53,7 @@
 				</nav>
 			</div>
 		</div>
+		
 
 		<div class="container-fluid corpo_centrale">
 			<div class="col-md-6 offset-md-3 col-sm-12">
@@ -51,7 +61,7 @@
 			</div>
 
 	 		<div class="row">
-				<div class="card-header	col-md-10 col-xl-8 offset-xl-2 offset-md-1 col-sm-12 form_opzione" style="background:white; border:0px;">
+				<div class="card-header	col-md-10 col-xl-8 offset-xl-2 offset-md-1 col-sm-12 form_opzione allineamento_spazzietto_destra_e_sinistra">
 
 					<div class="row">
 
@@ -61,8 +71,8 @@
 								<p>archivi</p>
 							</div>
 
-							<div class="card-header col-md-12 background_form_impostazioni_voce_sinistra" id="Statistiche" onclick="visualizza_nascondi_impostazioni('impostazioni_statistiche'); seleziona_uno(this, 'background_form_impostazioni_voce_sinistra_selezionata', 'background_form_impostazioni_voce_sinistra');">
-								<p>Statistiche</p>
+							<div class="card-header col-md-12 background_form_impostazioni_voce_sinistra" id="Statistiche" onclick="visualizza_nascondi_impostazioni('impostazioni_account'); seleziona_uno(this, 'background_form_impostazioni_voce_sinistra_selezionata', 'background_form_impostazioni_voce_sinistra');">
+								<p>Account</p>
 							</div>
 
 							<div class="card-header col-md-12 background_form_impostazioni_voce_sinistra" id="Info" onclick="visualizza_nascondi_impostazioni('impostazioni_info'); seleziona_uno(this, 'background_form_impostazioni_voce_sinistra_selezionata', 'background_form_impostazioni_voce_sinistra');">
@@ -75,7 +85,7 @@
 							<div class="card-header form_opzione" id="background_form_impostazioni">
 
 								<div id="impostazioni_archivi" class="impostazione_visualizza_nascondi">
-									<div class="col-md-11 offset-md-1">
+									<div class="col-md-11 offset-md-1 allineamento_impostazioni">
 										<div class="col-md-12" id="contenitore_tutti_archivi">
                                         	<!--autocompleamento degli archivi in ajax-->
                                         </div>
@@ -105,12 +115,38 @@
 								</div>
 
 
-								<div id="impostazioni_statistiche" class="impostazione_visualizza_nascondi" style="display:none;">
-
+								<div id="impostazioni_account" class="impostazione_visualizza_nascondi" style="display:none;">
+									<div class="col-md-11 offset-md-1 allineamento_impostazioni">
+									
+										<div class="col-md-3" style="text-align:center;">
+											<script>
+												document.write('<img class="cropped_foto dimensione_foto_impostazioni" src="../../immagini/foto_profilo/<?=$la_foto?>?'+Math.random()+'" >');
+											</script>
+										</div>
+										<div class="row">
+											<div class="col-md-12" style="margin-top:15px">
+												<p class="account_info">Username: <?php echo $_SESSION['username'] ?></p>
+												<p class="account_info">Fascicoli archiviati: <?php get_numero_archiviati() ?></p>
+												<p class="account_info">Fascicoli disarchiviati: <?php get_numero_disarchiviati() ?></p>
+												
+												<br>
+												<form action="../../php/upload_image.php" method="post" enctype="multipart/form-data">
+													
+													<p class="account_info">Cambia foto profilo: </p> 
+													<input type="file" class="account_upload" name="uploadedfile" style="width:100%; margin-bottom:8px" size="36">
+													<input type="submit" class="btn btn-primary" value="Carica">
+												
+												</form>
+											</div>
+										</div>
+									</div>
 								</div>
 
 								<div id="impostazioni_info" class="impostazione_visualizza_nascondi" style="display:none;">
-
+									<div class="col-md-11 offset-md-1 allineamento_impostazioni">
+										<h3 style="font-family: 'Nova Square', cursive;">Info:</h3>
+										<p>applicazione svilupata da Luca Maccarini; release attuale 1.0</p>
+									</div>
 								</div>
 
 							</div>

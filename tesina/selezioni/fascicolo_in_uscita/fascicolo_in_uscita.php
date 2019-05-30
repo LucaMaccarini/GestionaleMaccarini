@@ -27,11 +27,21 @@
 			<div class="col-md-6 offset-md-3 col-sm-12">
 				<div class="collapse" id="navbarToggleExternalContent" style="text-align:center;">
 					<div class="p-4 spazio_utente">
-						<div class="row">
-							<img src="../../immagini/default_user.png" class="foto_utente" >
+						<div class="center-cropped cropped_dimensioni_foto_profilo">
+							<?php
+								$la_foto=get_nome_foto_profilo($_SESSION['username']);
+							?>
+							
+							<script>
+								document.write('<img class="cropped_foto dimensione_foto_profilo" src="../../immagini/foto_profilo/<?=$la_foto?>?'+Math.random()+'" >');
+							</script>
+							
 						</div>
 						<div class="row">
 							<h4 style="color:black; width:100%; text-align:center;"><?php echo $_SESSION['username'] ?></h4>
+						</div>
+						<div class="col-4 offset-4">
+							<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href = '../../php/php_per_login/logout.php';">Log out</button>
 						</div>
 						<!--<span class="text-muted">eventuale descrizione</span>-->
 					</div>
@@ -49,63 +59,52 @@
 			<div class="col-md-6 offset-md-3 col-sm-12">
 				<h2 class="title titolo titolo_selezionato">Uscita</h2>
 			</div>
+			
+			
+			<div class="row">
+				<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">
+					<div class="row">
+						<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_elimina">
+							<form id="la_form" action='../../php/funzioni_post.php' method='post'>
 
-	 		<div class="row">
-				<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_elimina">
-					<form id="la_form" action='../../php/funzioni_post.php' method='post'>
+								<div class="form-group col-md-8 offset-md-2">
+									<label class="label_standard" >Numero</label>
+									<input class="form-control form-control-md input_standard" id="numero" name="_numero" type="text">
+								</div>
 
-						<div class="form-group col-md-8 offset-md-2">
-							<label class="label_standard" >Numero</label>
-							<input class="form-control form-control-md input_standard" id="numero" name="_numero" type="text">
-						</div>
+								<div class="form-group col-md-8 offset-md-2">
+									<label class="label_standard" >Anno</label>
+									<input class="form-control form-control-md input_standard" id="anno" name="_anno" type="text">
+								</div>
 
-						<div class="form-group col-md-8 offset-md-2">
-							<label class="label_standard" >Anno</label>
-							<input class="form-control form-control-md input_standard" id="anno" name="_anno" type="text">
-						</div>
+								<div class="form-group col-md-8 offset-md-2">
+									<label class="label_standard">Modello/Tipo</label>
+									<select class="form-control form-control-md input_standard" id="select_modello" name="_select_modello">
+										<option>- seleziona modello -</option>
+										<option>21/Unico</option>
+										<option>44/Ignoti</option>
+										<option>45/Atti relativi</option>
+										<option>21 bis/Giudice di pace</option>
+									</select>
 
-						<div class="form-group col-md-8 offset-md-2">
-							<label class="label_standard">Modello/Tipo</label>
-							<select class="form-control form-control-md input_standard" id="select_modello" name="_select_modello">
-								<option>- seleziona modello -</option>
-								<option>21/Unico</option>
-								<option>44/Ignoti</option>
-								<option>45/Atti relativi</option>
-								<option>21 bis/Giudice di pace</option>
-							</select>
+								</div>
 
-						</div>
+								<input type="hidden" name="_scelta" value="uscita">
 
-						<div class="form-group col-md-8 offset-md-2">
-							<label class="label_standard">Nome archivio</label>
-							<select class="form-control form-control-md input_standard" id="select_archivio" name="_select_archivio">
-								<option>- seleziona archivio -</option>
+							</form>
 
-								<?php
-									$conn = connessione_db();
-									opzioni_select_archivi($conn);
-									chiudi_connessione_db($conn);
-								?>
+							<div class="form-group col-md-8 offset-md-2 div_bottoni_forms">
 
+								<div class="row">
+									<button type="button"class="btn btn-primary col-5 col-sm-4 bottone_indietro_forms" onclick="window.location.href='../../index.php'">Indietro</button>
+									<button class="btn btn-primary col-5 col-sm-4 offset-2 offset-sm-4 bottone_submit_forms" onclick="controllo_inputs(document.getElementById('numero'),document.getElementById('anno'),document.getElementById('select_modello'),'non controllare');">Elimina</button>
 
-							</select>
-
-						</div>
-
-						<input type="hidden" name="_scelta" value="uscita">
-
-					</form>
-
-					<div class="form-group col-md-8 offset-md-2 div_bottoni_forms">
-
-						<div class="row">
-							<button type="button"class="btn btn-primary col-5 col-sm-4 bottone_indietro_forms" onclick="window.location.href='../../index.php'">Indietro</button>
-							<button class="btn btn-primary col-5 col-sm-4 offset-2 offset-sm-4 bottone_submit_forms" onclick="controllo_inputs(document.getElementById('numero'),document.getElementById('anno'),document.getElementById('select_modello'),document.getElementById('select_archivio'));">Elimina</button>
+								</div>
+							</div>
 
 						</div>
 					</div>
-
-	        	</div>
+				</div>
 			</div>
 		</div>
 

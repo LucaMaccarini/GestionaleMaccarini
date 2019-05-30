@@ -6,7 +6,6 @@
 
 
  ?>
- <!--versione 1.0-->
 <html style="height:100%;">
 	<head>
 		<title>archivio v1.0</title>
@@ -22,78 +21,93 @@
 	</head>
 	<body class="sfondo" style="height:100%;">
 
+		
 
-
-			<div class="pos-f-t" style="background:#ff8c00b3;">
-				<div class="col-md-8 offset-md-2 col-sm-12">
-					<div class="collapse" id="navbarToggleExternalContent" style="text-align:center;">
-						<div class="p-4 spazio_utente">
-							<div class="row">
-								<img src="immagini/default_user.png" class="foto_utente" >
-							</div>
-							<div class="row">
-								<h4 style="color:black; width:100%; text-align:center;"><?php echo $_SESSION['username'] ?></h4>
-							</div>
-							<!--<span class="text-muted">eventuale descrizione</span>-->
+		<div class="pos-f-t" style="background:#ff8c00b3;">
+			<div class="col-md-8 offset-md-2 col-sm-12">
+				<div class="collapse" id="navbarToggleExternalContent" style="text-align:center;">
+					<div class="p-4 spazio_utente">
+						<div class="center-cropped cropped_dimensioni_foto_profilo">
+							<?php
+								$la_foto=get_nome_foto_profilo($_SESSION['username']);
+							
+							?>
+							
+							<script>
+								document.write('<img class="cropped_foto dimensione_foto_profilo" src="immagini/foto_profilo/<?=$la_foto?>?'+Math.random()+'" >');
+							</script>
+							
 						</div>
+						<div class="row">
+							<h4 style="color:black; width:100%; text-align:center;"><?php echo $_SESSION['username'] ?></h4>
+						</div>
+						<div class="col-4 offset-4">
+							<button type="button" class="btn btn-primary btn-sm" onclick="window.location.href = 'php/php_per_login/logout.php';">Log out</button>
+						</div>
+						<!--<span class="text-muted">eventuale descrizione</span>-->
 					</div>
-					<nav class="navbar navbar-dark navbar_personalizzata">
-						<button class="navbar-toggler bottone_tendina" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" onclick="ruota(document.getElementById('tendina'));">
-							<img class="rotate" id="tendina" src="immagini/freccia_basso.png" style="width:30px;" >
-						</button>
-						<p class="grassetto" style="color:black;">Archivio</p>
-					</nav>
 				</div>
+				<nav class="navbar navbar-dark navbar_personalizzata">
+					<button class="navbar-toggler bottone_tendina" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation" onclick="ruota(document.getElementById('tendina'));">
+						<img class="rotate" id="tendina" src="immagini/freccia_basso.png" style="width:30px;" >
+					</button>
+					<p class="grassetto" style="color:black;">Archivio</p>
+				</nav>
 			</div>
-
+		</div>
+	
 
     	<h1 class="titolo">Maccarini Gestionale</h1>
 
 		<div class="container-fluid corpo_centrale">
-	 		<div class="row">
-
-
-				<div class="col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="fascicolo_entrata">
-					<a href="selezioni/fascicolo_in_entrata/fascicolo_in_entrata.php" style="text-decoration:none;">
-						<div class="seleziona_opzione_posizionamento_interno">
-							<img src="immagini/fascicolo_entrata.png"  class="icona_opzione"/>
-							<p class="testo_opzione">Fascicolo in entrata</p>
-						</div>
-					</a>
-				</div>
-
-	        	<div class="col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="fascicolo_uscita">
-					<a href="selezioni/fascicolo_in_uscita/fascicolo_in_uscita.php" style="text-decoration:none;">
-						<div class="seleziona_opzione_posizionamento_interno">
-							<img src="immagini/fascicolo_uscita.png"  class="icona_opzione" />
-							<p class="testo_opzione">Fascicolo in uscita</p>
-						</div>
-					</a>
-	        	</div>
-	        </div>
+		
 			<div class="row">
+				<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">
+					<div class="row">
 
-				<div class="col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="ricerca_fascicolo">
-					<a href="selezioni/fascicoli/fascicoli.php" style="text-decoration:none;">
-					<a href="selezioni/fascicoli/fascicoli.php" style="text-decoration:none;">
-						<div class="seleziona_opzione_posizionamento_interno">
-							<img src="immagini/fascicolo_cerca.png"  class="icona_opzione" />
-							<p class="testo_opzione">fascicoli</p>
-						</div>
-					</a>
-	        	</div>
 
-	        	<div class="card-header	col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="impostazioni">
-					<a href="selezioni/impostazioni/impostazioni.php" style="text-decoration:none;">
-						<div class="seleziona_opzione_posizionamento_interno">
-							<img src="immagini/impostazioni.png" class="icona_opzione" />
-							<p class="testo_opzione">Impostazioni</p>
+						<div class="col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="fascicolo_entrata">
+							<a href="selezioni/fascicolo_in_entrata/fascicolo_in_entrata.php" style="text-decoration:none;">
+								<div class="seleziona_opzione_posizionamento_interno">
+									<img src="immagini/fascicolo_entrata.png"  class="icona_opzione"/>
+									<p class="testo_opzione">Fascicolo in entrata</p>
+								</div>
+							</a>
 						</div>
-					</a>
+
+						<div class="col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="fascicolo_uscita">
+							<a href="selezioni/fascicolo_in_uscita/fascicolo_in_uscita.php" style="text-decoration:none;">
+								<div class="seleziona_opzione_posizionamento_interno">
+									<img src="immagini/fascicolo_uscita.png"  class="icona_opzione" />
+									<p class="testo_opzione">Fascicolo in uscita</p>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="ricerca_fascicolo">
+							<a href="selezioni/fascicoli/fascicoli.php" style="text-decoration:none;">
+							<a href="selezioni/fascicoli/fascicoli.php" style="text-decoration:none;">
+								<div class="seleziona_opzione_posizionamento_interno">
+									<img src="immagini/fascicolo_cerca.png"  class="icona_opzione" />
+									<p class="testo_opzione">fascicoli</p>
+								</div>
+							</a>
+						</div>
+
+						<div class="card-header	col-md-3 offset-md-2 col-12 seleziona_opzione_posizionamento_esterno" id="impostazioni">
+							<a href="selezioni/impostazioni/impostazioni.php" style="text-decoration:none;">
+								<div class="seleziona_opzione_posizionamento_interno">
+									<img src="immagini/impostazioni.png" class="icona_opzione" />
+									<p class="testo_opzione">Impostazioni</p>
+								</div>
+							</a>
+						</div>
+
+					</div>
 				</div>
-
 			</div>
-
 		</div>
 
 	</body>

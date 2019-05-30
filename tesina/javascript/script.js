@@ -204,3 +204,28 @@ function ruota(tendina)
 		tendina.classList.add("down");
 }
 
+function aggiorna_pagina(oggetto_pagina, pagina)
+{
+	oggetto_pagina.innerHTML=pagina;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

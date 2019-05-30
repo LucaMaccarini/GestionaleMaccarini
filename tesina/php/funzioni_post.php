@@ -137,18 +137,22 @@
 
 
 					echo'	<div class="row">';
-					echo'		<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_aggiungi">';
+					echo' 		<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">';
+					echo'			<div class="row">';
+					
+					echo'				<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_aggiungi">';
 
-					echo'			<div class="form-group col-md-8 offset-md-2">';
-					echo'				<label class="label_standard col-12" style="text-align:center; color:#0058ff;"><strong>Fascicolo aggiunto:</strong></label>';
-					echo'				<label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.'</label>';
-					echo'				<label class="label_standard col-12" style="text-align:center;">Anno: '.$anno.'</label>';
-					echo'				<label class="label_standard col-12" style="text-align:center;">Modello: '.$modello.'</label>';
-					echo'				<label class="label_standard col-12" style="text-align:center;">Archivio: '.$nome_archivio.'</label>';
+					echo'					<div class="form-group col-md-8 offset-md-2">';
+					echo'						<label class="label_standard col-12" style="text-align:center; color:#0058ff;"><strong>Fascicolo aggiunto:</strong></label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.'</label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Anno: '.$anno.'</label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Modello: '.$modello.'</label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Archivio: '.$nome_archivio.'</label>';
 					$percorso="'../index.php'";
-					echo'				<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'						<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'					</div>';
+					echo'				</div>';
 					echo'			</div>';
-
 					echo'		</div>';
 					echo'	</div>';
 
@@ -161,14 +165,17 @@
 
 
 					echo'	<div class="row">';
-					echo'		<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_aggiungi">';
+					echo' 		<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">';
+					echo'			<div class="row">';
+					echo'				<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_aggiungi">';
 
-					echo'			<div class="form-group col-md-8 offset-md-2">';
-					echo'				<label class="label_standard col-12" style="text-align:center;"><strong>Fascicolo gi&agrave; presente in archivio</strong></label>';
+					echo'					<div class="form-group col-md-8 offset-md-2">';
+					echo'						<label class="label_standard col-12" style="text-align:center;"><strong>Fascicolo gi&agrave; presente in archivio</strong></label>';
 					$percorso="'../index.php'";
-					echo'				<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'						<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'					</div>';
+					echo'				</div>';
 					echo'			</div>';
-
 					echo'		</div>';
 					echo'	</div>';
 				}
@@ -181,19 +188,29 @@
 			function uscita_fascicolo($numero, $anno, $modello, $archivio, $nome_archivio)
 			{
 
-				$query_ricerca="SELECT id, numero, anno, modello, legame_archivio, e_in_archivio FROM tabella_fascicoli WHERE numero=".$numero." AND anno=".$anno." AND modello LIKE '".$modello."' AND legame_archivio=".$archivio." AND e_in_archivio=1;";
+				$query_ricerca="SELECT id, numero, anno, modello, e_in_archivio, legame_archivio FROM tabella_fascicoli WHERE numero=".$numero." AND anno=".$anno." AND modello LIKE '".$modello."' AND e_in_archivio=1;";
 
 				$conn=connessione_db();
 				$riga_archivio=mysqli_query($conn,$query_ricerca) -> fetch_array();
 				chiudi_connessione_db($conn);
 				$id_fascicolo_in_uscita=$riga_archivio['id'];
+				
+				
+				$query_nome_archivio="SELECT id, nome FROM tabella_archivi WHERE id='".$riga_archivio['legame_archivio']."';";
+
+				$conn=connessione_db();
+				$riga_archivio=mysqli_query($conn,$query_nome_archivio) -> fetch_array();
+				chiudi_connessione_db($conn);
+
+				$nome_archivio=$riga_archivio['nome'];
+				
 
 				$data_corrente = date("Y-m-d");
 
 
 				echo'<div class="pos-f-t" style="background:#ff2e2eb3;">';
-				echo'		<div class="col-md-6 offset-md-3 col-sm-12">';
-				echo'			<nav class="navbar navbar-dark navbar_personalizzata">';
+				echo'	<div class="col-md-6 offset-md-3 col-sm-12">';
+				echo'		<nav class="navbar navbar-dark navbar_personalizzata">';
 				echo'			<p class="grassetto" style="color:black; width:100%; text-align:right;">Fascicolo in uscita</p>';
 				echo'		</nav>';
 				echo'	</div>';
@@ -215,7 +232,7 @@
 					chiudi_connessione_db($conn);
 					//echo "FASCICOLO USCITO";
 
-					echo'</div>';
+					//echo'</div>';
 
 
 					echo'<div class="col-md-6 offset-md-3 col-sm-12">';
@@ -224,18 +241,21 @@
 
 
 					echo'<div class="row">';
-					echo'	<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_elimina">';
+					echo' 	<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">';
+					echo'		<div class="row">';
+					echo'			<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_elimina">';
 
-					echo'		<div class="form-group col-md-8 offset-md-2">';
-					echo'			<label class="label_standard col-12" style="text-align:center; color:#0058ff;"><strong>Fascicolo uscito:</strong></label>';
-					echo'			<label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.'</label>';
-					echo'			<label class="label_standard col-12" style="text-align:center;">Anno: '.$anno.'</label>';
-					echo'			<label class="label_standard col-12" style="text-align:center;">Modello: '.$modello.'</label>';
-					echo'			<label class="label_standard col-12" style="text-align:center;">Archivio: '.$nome_archivio.'</label>';
+					echo'				<div class="form-group col-md-8 offset-md-2">';
+					echo'					<label class="label_standard col-12" style="text-align:center; color:#0058ff;"><strong>Fascicolo uscito:</strong></label>';
+					echo'					<label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.'</label>';
+					echo'					<label class="label_standard col-12" style="text-align:center;">Anno: '.$anno.'</label>';
+					echo'					<label class="label_standard col-12" style="text-align:center;">Modello: '.$modello.'</label>';
+					echo'					<label class="label_standard col-12" style="text-align:center;">Archivio: '.$nome_archivio.'</label>';
 					$percorso="'../index.php'";
-					echo'			<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'					<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'				</div>';
+					echo'			</div>';
 					echo'		</div>';
-
 					echo'	</div>';
 
 
@@ -249,14 +269,17 @@
 
 
 					echo'	<div class="row">';
-					echo'		<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_elimina">';
+					echo' 		<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">';
+					echo'			<div class="row">';
+					echo'				<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_elimina">';
 
-					echo'			<div class="form-group col-md-8 offset-md-2">';
-					echo'				<label class="label_standard col-12" style="text-align:center;"><strong>Fascicolo non presente in archivio</strong></label>';
+					echo'					<div class="form-group col-md-8 offset-md-2">';
+					echo'						<label class="label_standard col-12" style="text-align:center;"><strong>Fascicolo non presente in archivio</strong></label>';
 					$percorso="'../index.php'";
-					echo'				<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'						<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'					</div>';
+					echo'				</div>';
 					echo'			</div>';
-
 					echo'		</div>';
 					echo'	</div>';
 				}
@@ -309,38 +332,44 @@
 
 
 					echo'<div class="row">';
+					echo' 	<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">';
+					echo'		<div class="row">';
 
-					echo'	<div class="card-header	col-md-8 col-xl-6 offset-md-2 offset-xl-3 col-sm-12 form_opzione" id="background_form_ricerca">';
 
-					echo'		<div class="form-group col-md-10 col-xl-8 offset-md-1 offset-xl-2">';
-					echo'			<label class="label_standard col-12" style="text-align:center; color:#0058ff;"><strong>Fascicolo trovato:</strong></label>';
+					echo'			<div class="card-header	col-md-8 col-xl-6 offset-md-2 offset-xl-3 col-sm-12 form_opzione" id="background_form_ricerca">';
+
+					echo'				<div class="form-group col-md-10 col-xl-8 offset-md-1 offset-xl-2">';
+					echo'					<label class="label_standard col-12" style="text-align:center; color:#0058ff;"><strong>Fascicolo trovato:</strong></label>';
 
 					if($riga_archivio['e_in_archivio'])
-						echo'		<div class="card-header col-12 fascicolo_cercato_presente">';
+						echo'				<div class="card-header col-12 fascicolo_cercato_presente">';
 					else
-						echo'		<div class="card-header col-12 fascicolo_cercato_assente">';
+						echo'				<div class="card-header col-12 fascicolo_cercato_assente">';
 
-					echo'				<label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.'</label>';
-					echo'				<label class="label_standard col-12" style="text-align:center;">Anno: '.$anno.'</label>';
-					echo'				<label class="label_standard col-12" style="text-align:center;">Modello: '.$modello.'</label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.'</label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Anno: '.$anno.'</label>';
+					echo'						<label class="label_standard col-12" style="text-align:center;">Modello: '.$modello.'</label>';
 
 					if($riga_archivio['e_in_archivio'])
 					{
-						echo'			<label class="label_standard col-12" style="text-align:center;">Archiviato in data: '.$riga_archivio['data_di_archiviazione'].'</label>';
-						echo'			<label class="label_standard col-12" style="text-align:center;">Archivio: '.$nome_archivio.'</label>';
+						echo'					<label class="label_standard col-12" style="text-align:center;">Archiviato in data: '.$riga_archivio['data_di_archiviazione'].'</label>';
+						echo'					<label class="label_standard col-12" style="text-align:center;">Archivio: '.$nome_archivio.'</label>';
 					}
 					else
 					{
-						echo'			<label class="label_standard col-12" style="text-align:center;">Non archiviato!';
-						echo'			<label class="label_standard col-12" style="text-align:center;">Data di uscita: '.$riga_archivio['data_uscita_archivio'].'</label>';
+						echo'					<label class="label_standard col-12" style="text-align:center;">Non archiviato!';
+						echo'					<label class="label_standard col-12" style="text-align:center;">Data di uscita: '.$riga_archivio['data_uscita_archivio'].'</label>';
 					}
-					echo'			</div>';
+					echo'					</div>';
+					
 
 					//echo'<div class="card-header col-12 fascicolo_cercato"> <label class="label_standard col-12" style="text-align:center;">Numero: '.$numero.', Anno: '.$anno.', Modello: '.$modello.', Archivio: '.$nome_archivio.' </label> </div>';
 
 
 					$percorso="'../index.php'";
 					echo'			<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'				</div>';
+					echo'			</div>';
 					echo'		</div>';
 					echo'	</div>';
 					echo'</div>';
@@ -353,14 +382,17 @@
 
 
 					echo'	<div class="row">';
-					echo'		<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_ricerca">';
+					echo' 		<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">';
+					echo'			<div class="row">';
+					echo'				<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_ricerca">';
 
-					echo'			<div class="form-group col-md-8 offset-md-2">';
-					echo'				<label class="label_standard col-12" style="text-align:center;"><strong>Fascicolo non presente in archivio</strong></label>';
+					echo'					<div class="form-group col-md-8 offset-md-2">';
+					echo'						<label class="label_standard col-12" style="text-align:center;"><strong>Fascicolo non presente in archivio</strong></label>';
 					$percorso="'../index.php'";
-					echo'				<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'						<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='.$percorso.'" >Menu principale</button>';
+					echo'					</div>';
+					echo'				</div>';
 					echo'			</div>';
-
 					echo'		</div>';
 					echo'	</div>';
 				}
