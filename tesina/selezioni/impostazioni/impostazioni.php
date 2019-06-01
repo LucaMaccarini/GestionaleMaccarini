@@ -92,11 +92,11 @@
 
 										<div class="row" id="div_aggiungi_archivio" style="display:none;">
 
-											<div class="card-header col-md-11" id="aggiungi_archivio">
+											<div class="card-header col-md-11 div_mostra_nascondi_stile" id="aggiungi_archivio">
 												<div class="form-group col-md-8 offset-md-2">
 													<form id="form_aggiungi_archivio" action='impostazioni.php' method='post'>
 														<label class="label_standard" >Nome</label>
-														<input class="form-control form-control-md input_standard" id="nome_archivio" name="_nome_archivio" type="text" style="margin-bottom:5px;">
+														<input class="form-control form-control-md input_standard" id="nome_archivio" name="_nome_archivio" type="text" style="margin-bottom:10px;">
 													</form>
 													<button class="btn btn-primary col-5 offset-7 bottone_submit_forms" style="height: 35px;" onclick="aggiungi_archivio(); ajax_get_json_nomi_archivi();">Aggiungi</button>
 												</div>
@@ -108,7 +108,7 @@
 
 										<div class="row div_bottoni_forms" style="bottom:0px;">
 											<button type="button" class="btn btn-primary col-5 col-md-4 bottone_indietro_forms" onclick="elimina_archivio(); ajax_get_json_nomi_archivi();">Elimina</button>
-											<button class="btn btn-primary col-5 col-md-4 offset-2 offset-md-3 bottone_submit_forms" id="nuovo_archivio" onclick="visualizza_nascondi_div_aggiungi_archivio();">Aggiungi</button>
+											<button class="btn btn-primary col-5 col-md-4 offset-2 offset-md-3 bottone_submit_forms" id="nuovo_archivio" onclick="visualizza_nascondi_div_con_bottone('div_aggiungi_archivio','nuovo_archivio', 'Aggiungi','Nascondi');">Aggiungi</button>
 										</div>
 
 									</div>
@@ -130,8 +130,27 @@
 												<p class="account_info">Fascicoli disarchiviati: <?php get_numero_disarchiviati() ?></p>
 												
 												<br>
+												
+												<div class="card-header col-lg-10 col-md-11 div_mostra_nascondi_stile" id="div_cambio_password" style="display:none;">
+													<div class="col-lg-10 offset-lg-1">
+														
+														<label class="account_info" >Vecchia password</label>
+														<input class="form-control form-control-md input_standard" id="vecchia_password" name="_vecchia_password" type="password" style="margin-bottom:5px;" placeholder="Vecchia">
+														
+														<label class="account_info" >Nuova password</label>
+														<input class="form-control form-control-md input_standard" id="nuova_password" name="_nuova_password" type="password" style="margin-bottom:5px;" placeholder="Nuova">
+														
+														<label class="account_info" >Ripeti la password</label>
+														<input class="form-control form-control-md input_standard" id="ripeti_password" name="_ripeti_password" type="password" style="margin-bottom:10px;" placeholder="Ripeti la nuova password">
+														
+														<button class="btn btn-primary col-5 offset-7 bottone_submit_forms" style="height: 35px;  margin-bottom: 7px;" onclick="cambia_password('vecchia_password', 'nuova_password', 'ripeti_password');">Cambia</button>
+													</div>
+												</div>
+												<button class="btn btn-primary" id="cambio_password_bottone" onclick="visualizza_nascondi_div_con_bottone('div_cambio_password','cambio_password_bottone', 'Cambia password','Nascondi');">Cambia password</button>
+												
+												
 												<form action="../../php/upload_image.php" method="post" enctype="multipart/form-data">
-													
+													<br>
 													<p class="account_info">Cambia foto profilo: </p> 
 													<input type="file" class="account_upload" name="uploadedfile" style="width:100%; margin-bottom:8px" size="36">
 													<input type="submit" class="btn btn-primary" value="Carica">

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<title>archivio v1.0</title>
@@ -20,52 +19,35 @@
 		<div class="pos-f-t" style="background:#ff8c00b3;">
 			<div class="col-md-6 offset-md-3 col-sm-12">
 				<nav class="navbar navbar-dark navbar_personalizzata">
-					<p class="grassetto" style="color:black; width:100%; text-align:right;">Registrazione archivio</p>
+					<p class="grassetto" style="color:black; width:100%; text-align:right;">Registrazione bloccata</p>
 				</nav>
 			</div>
 		</div>
-
+		
 		<div class="container-fluid corpo_centrale">
+		
 			<div class="col-md-6 offset-md-3 col-sm-12">
-				<h2 class="title titolo titolo_selezionato">Registrazione</h2>
+				<h2 class="title titolo titolo_selezionato" style="color:red;">Errore</h2>
 			</div>
+
 
 			<div class="row">
 				<div class="card-header col-12 allineamento_spazzietto_destra_e_sinistra">
-			
 					<div class="row">
-						<div class="card-header	col-md-6 offset-md-3 col-sm-12 form_opzione" id="background_form_login">
-							<form id="la_form" action='../php/php_per_login/registrazione_o_login.php' method='post'>
+						<div class="card-header  col-lg-8 offset-lg-2	col-md-10 offset-md-1 col-sm-12 form_opzione" id="background_form_login">
 
-								<div class="form-group col-md-8 offset-md-2">
-									<label class="label_standard" >Username</label>
-									<input class="form-control form-control-md input_standard" id="username" name="username" type="text" placeholder="Username">
-								</div>
-
-								<div class="form-group col-md-8 offset-md-2">
-									<label class="label_standard" >Password</label>
-									<input type="password" class="form-control form-control form-control-md input_standard" id="pass" name="pass" placeholder="Password">
-								</div>
-
-								<div class="form-group col-md-8 offset-md-2">
-									<label class="label_standard" >Ripeti password</label>
-									<input type="password" class="form-control form-control form-control-md input_standard" id="pass2" name="pass2" placeholder="Password">
-								</div>
-							</form>
-							<div class="form-group col-md-8 offset-md-2 div_bottoni_forms">
-
-								<div class="row">
-									<button type="button"class="btn btn-primary col-3 col-md-4 bottone_indietro_forms" onclick="window.location.href='login.php'">Login</button>
-									<button type="button"class="btn btn-primary col-3 col-md-4 offset-6 offset-md-4 bottone_indietro_forms" onclick="window.location.href='../php/php_per_login/blocca_registrazione.php'">Blocco</button>
-									<button class="btn btn-primary col-12 bottone_submit_forms" style="margin-top: 15px; height: 39px;" onclick="controllo_registrazione(document.getElementById('la_form'), document.getElementById('username'), document.getElementById('pass'), document.getElementById('pass2'))">Registrati</button>
-								</div>
-
+							<div class="form-group col-md-8 offset-md-2">
+							
+								<label class="label_standard col-12" style="text-align:center;"><strong>Impossibile registrare l'utente: la registrazione &egrave stata bloccata!</strong></label>		
+								<button class="btn btn-primary bottone_indietro_forms col-10 col-xl-6 offset-1 offset-xl-3" onclick="window.location.href='login.php'" >Torna al login</button>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
+
+		</div>
 	</body>
 </html>
+

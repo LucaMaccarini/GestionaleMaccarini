@@ -118,22 +118,22 @@ function seleziona_piu(event, stringa_classe_selezionato, stringa_classe_non_sel
 			
 }*/
 
-function visualizza_nascondi_div_aggiungi_archivio() 
+function visualizza_nascondi_div_con_bottone(id_div, id_bottone, stringa_bottone_da_non_selezionato, stringa_bottone_da_selezionato) 
 {
-	var div_aggiungi_archivio=document.getElementById("div_aggiungi_archivio");
-	var bottone= document.getElementById("nuovo_archivio");
+	var il_div=document.getElementById(id_div);
+	var bottone= document.getElementById(id_bottone);
 	
-	if(bottone.innerHTML=="Aggiungi")
+	if(bottone.innerHTML==stringa_bottone_da_non_selezionato)
 	{
-		div_aggiungi_archivio.style.display = "block";
+		il_div.style.display = "block";
 		bottone.className += " bottone_indietro_forms";
-		bottone.innerHTML="Nascondi";
+		bottone.innerHTML=stringa_bottone_da_selezionato;
 	}
 	else
 	{
-		div_aggiungi_archivio.style.display = "none";
+		il_div.style.display = "none";
 		bottone.classList.remove("bottone_indietro_forms");
-		bottone.innerHTML="Aggiungi";
+		bottone.innerHTML=stringa_bottone_da_non_selezionato;
 	}
 }
 

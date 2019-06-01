@@ -305,7 +305,7 @@ p{
 	cursor:pointer;
 }
 
-#aggiungi_archivio
+.div_mostra_nascondi_stile
 {
 	border: 2px solid #21d4ff;
     background: #21d4ff21;
@@ -424,6 +424,7 @@ p{
 .account_info{
 	margin-bottom:5px;
 	font-size:20px;
+	font-family: 'Nova Square', cursive;
 }
 	
 .account_upload{

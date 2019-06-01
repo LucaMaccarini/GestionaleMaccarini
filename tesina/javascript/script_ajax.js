@@ -78,6 +78,8 @@ function aggiungi_archivio()
 	}
     else
       alert("Inserire il nome dell' archivio");
+  
+	nome_archivio.select();
 }
 
 function elimina_archivio()
@@ -222,6 +224,43 @@ function genera_righe_tabella_archivi(tabella)
 		tabella.appendChild(riga); 
 		//lert(result[i]["numero"]);
 	}
+	
+}
+
+function cambia_password(id_vecchia,id_nuova,id_ripetuta)
+{
+	var vecchia=document.getElementById(id_vecchia);
+	var nuova=document.getElementById(id_nuova);
+	var ripetuta=document.getElementById(id_ripetuta);
+	
+	if(nuova.value==ripetuta.value)
+	{
+		loadPage("../../ajax/cambia_password_ajax.php","_vecchia_password=" + vecchia.value +"&"+"_nuova_password="+nuova.value+"&"+"_ripeti_password="+ripetuta.value);
+		if(req.responseText=='0')
+		{
+			alert('Password cambiata con successo!');
+			
+			vecchia.value="";
+			nuova.value="";
+			ripetuta.value="";
+			
+			document.getElementById("cambio_password_bottone").click(); 
+		}
+		else
+		{
+			if(req.responseText=='1')
+				alert('Password dell\'account errata!');
+			vecchia.select();
+		}
+		
+	}
+	else
+	{
+		alert('Le password non coincidono!');
+		ripetuta.select();
+	}
+	
+	
 }
 
 
