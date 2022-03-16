@@ -1,4 +1,5 @@
 # GestionaleMaccarini
+[progetto per l'esame di maturità]
 gestionale per affiancare degli archivi realmente esistenti e gestire la posizione dei fascicoli risparmiando inutili perdite di tempo.
 
 versione 1.0 pienamente funzionante
