@@ -4,7 +4,7 @@
 gestionale per affiancare degli archivi realmente esistenti e gestire la posizione dei fascicoli risparmiando inutili perdite di tempo.
 
 
-configurazione:
+## configurazione:
 
 - tramite l'apposita pagina di registrazione registrare tutti gli utenti che possono accedere agli archivi;
 
