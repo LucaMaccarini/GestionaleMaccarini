@@ -12,3 +12,9 @@ configurazione:
 
 - per riabilitare la registrazione seguire le istruzioni presenti nel file 'sbloccare la registrazione.txt' nella directory 'tesina/login'
 
+il sito è online al link https://www.how2macca.altervista.org/tesina/login/login.php
+
+credenziali di test
+username: a
+password: a
+
