@@ -1,22 +1,20 @@
 # GestionaleMaccarini
-### Progetto per l'esame di maturità
+# Description
+This repository contains the project I submitted for my High School Final Exam
 
-gestionale per affiancare degli archivi realmente esistenti e gestire la posizione dei fascicoli risparmiando inutili perdite di tempo.
+A management system to support existing archives and streamline the tracking of file locations, reducing unnecessary time waste.
 
+## Configuration:
 
-## configurazione:
+- Use the dedicated registration page to register all users who need access to the archives.
+- Once all users are registered, press the 'lock' button on the registration page to prevent further registrations. This will block any attempt to create a new account.
+- To re-enable registration, follow the instructions in the 'unlock registration.txt' file located in the '/login' directory.
 
-- tramite l'apposita pagina di registrazione registrare tutti gli utenti che possono accedere agli archivi;
+# Site
+The site is available online at: https://www.how2macca.altervista.org/tesina/login/login.php
 
-- una volta registrati tutti gli utenti per non permettere la registrazione di 'intrusi' premere il pulsante 'blocco' nella pagina di registrazione, così facendo verrà bloccato ogni tentativo di registrazione di un nuovo account;
+Test credentials:
 
-- per riabilitare la registrazione seguire le istruzioni presenti nel file 'sbloccare la registrazione.txt' nella directory '/login'
-
-il sito è online al link https://www.how2macca.altervista.org/tesina/login/login.php
-
-credenziali di test
-
-username: a
-
-password: a
+- **Username**: a  
+- **Password**: a
 
