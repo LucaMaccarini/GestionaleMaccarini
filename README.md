@@ -1,5 +1,6 @@
 # GestionaleMaccarini
 <img src="./immagini/site.png" width="600">
+
 # Description
 This repository contains the project I submitted for my High School Final Exam
 
